@@ -16,7 +16,7 @@ using System.Windows.Shapes;
 using System.Data.Entity;
 
 using HappyPocket.DataModel;
-using HappyPocket.UtilityWindows;
+//using HappyPocket.UtilityWindows;
 
 
 namespace HappyPocket.Form
@@ -49,13 +49,38 @@ namespace HappyPocket.Form
 
         private void Button_Back_Click(object sender, RoutedEventArgs e)
         {
-            //UtilityWindow_SaveDialog = new UtilityWindow_SaveDialog();
+            if (!dbContext.ChangeTracker.HasChanges())
+            {
+                this.Close();
+                this.WindowParent.Show();
+                return;
+            }
 
-            DialogSave DialogSave = new DialogSave(this);
-            DialogSave.ShowDialog();
+            var messageBoxText = "Если вы закроете форму, все изменения утратятся. Сохранить изменения?";
+            var caption = "Закрыть форму";
+
+            MessageBoxResult toSave = System.Windows.MessageBox.Show(
+                messageBoxText,
+                caption,
+                MessageBoxButton.YesNoCancel,
+                MessageBoxImage.Question);
+
+            if (toSave == MessageBoxResult.Cancel) 
+            {
+                return;
+            }
+            else if (toSave == MessageBoxResult.No)
+            {
+                dbContext.Dispose();
+            }
+            else
+            {
+                dbContext.SaveChanges();
+            }
 
             this.Close();
             this.WindowParent.Show();
+            return;
         }
     }
 }
