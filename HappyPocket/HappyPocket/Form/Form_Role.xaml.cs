@@ -38,20 +38,8 @@ namespace HappyPocket.Form
 
         private void Form_Role_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            // TODO: show dialog window.
-            dbContext.Dispose();
-        }
-
-        private void Button_Update_Click(object sender, RoutedEventArgs e)
-        {
-            dbContext.SaveChanges();
-        }
-
-        private void Button_Back_Click(object sender, RoutedEventArgs e)
-        {
             if (!dbContext.ChangeTracker.HasChanges())
             {
-                this.Close();
                 this.WindowParent.Show();
                 return;
             }
@@ -65,8 +53,9 @@ namespace HappyPocket.Form
                 MessageBoxButton.YesNoCancel,
                 MessageBoxImage.Question);
 
-            if (toSave == MessageBoxResult.Cancel) 
+            if (toSave == MessageBoxResult.Cancel)
             {
+                e.Cancel = true; // Cancelling closing.
                 return;
             }
             else if (toSave == MessageBoxResult.No)
@@ -78,9 +67,18 @@ namespace HappyPocket.Form
                 dbContext.SaveChanges();
             }
 
-            this.Close();
             this.WindowParent.Show();
             return;
+        }
+
+        private void Button_Save_Click(object sender, RoutedEventArgs e)
+        {
+            dbContext.SaveChanges();
+        }
+
+        private void Button_Back_Click(object sender, RoutedEventArgs e)
+        {
+           this.Close();
         }
     }
 }
