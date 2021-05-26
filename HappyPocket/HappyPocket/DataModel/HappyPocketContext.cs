@@ -1,15 +1,21 @@
 ﻿namespace HappyPocket.DataModel
 {
     using System;
-    using System.Data.Entity;
+    using Microsoft.EntityFrameworkCore;
     using System.Linq;
 
     public class HappyPocketContext : DbContext
     {
         public HappyPocketContext()
-            : base("name=HappyPocketContext")
         {
+            Database.EnsureCreated();
         }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseSqlServer(@"Server = DS13; Database = HappyPocket; Trusted_Connection = True;");
+        }
+
 
         // Tables.
         public DbSet<PaymentType> PaymentTypes { get; set; }

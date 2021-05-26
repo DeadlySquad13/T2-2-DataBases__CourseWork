@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using System.Collections.ObjectModel;
+
 namespace HappyPocket.DataModel
 {
     public class Role
@@ -12,10 +14,10 @@ namespace HappyPocket.DataModel
         public string Name { get; set; }
 
         // Custom collection that stores instances of FamilyMember assigned to this Role.
-        public ICollection<FamilyMember> FamilyMembers { get; set; }
+        public virtual ICollection<FamilyMember> FamilyMembers { get; set; }
         public Role()
         {
-            FamilyMembers = new List<FamilyMember>();
+            FamilyMembers = new ObservableCollection<FamilyMember>();
         }
     }
 }

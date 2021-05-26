@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+//using System.Configuration;
 using HappyPocket.Form;
 
 namespace HappyPocket
@@ -20,23 +21,25 @@ namespace HappyPocket
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : HappyPocketWindow
+    public partial class MainWindow
     {
         public MainWindow()
         {
+            //string connectionString = ConfigurationManager.ConnectionStrings["HappyPocketContext"].ConnectionString;
             InitializeComponent();
         }
-        private void Button_Open_Form_Role_Click(object sender, RoutedEventArgs e)
+
+        private void Button_Open_FormRole_Click(object sender, RoutedEventArgs e)
         {
-            Form_Role SubWindow = new Form_Role();
-            SubWindow.WindowParent = this;
+            FormRole SubWindow = new FormRole();
+            SubWindow.Owner = this;
             this.Hide();
             SubWindow.Show();
         }
 
-        private void Button_Open_Form_FamilyMember_Click(object sender, RoutedEventArgs e)
+        private void Button_Open_FormFamilyMember_Click(object sender, RoutedEventArgs e)
         {
-            Form_FamilyMember SubWindow = new Form_FamilyMember();
+            FormFamilyMember SubWindow = new FormFamilyMember();
             SubWindow.Show();
         }
     }
