@@ -1,0 +1,22 @@
+﻿<local:HappyPocketWindow x:Class="HappyPocket.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HappyPocket"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <local:HappyPocketWindow.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Margin" Value="20 8 20 8" />
+            <Setter Property="Width" Value="100" />
+            <Setter Property="Height" Value="30" />
+        </Style>
+    </local:HappyPocketWindow.Resources>
+    <Grid>
+        <StackPanel HorizontalAlignment="Center" Grid.Row="1" Orientation="Horizontal">
+            <Button x:Name="Button_Open_Form_Role" Content="Роли" Click="Button_Open_Form_Role_Click" />
+            <Button x:Name="Button_Open_Form_FamilyMember" Content="Члены семьи" Click="Button_Open_Form_FamilyMember_Click" />
+        </StackPanel>
+    </Grid>
+</local:HappyPocketWindow>
