@@ -17,7 +17,7 @@
                 <DataGridTextColumn Binding="{Binding Name}" Header="Фамилия" Width="2*"/>
                 <DataGridTextColumn Binding="{Binding Surname}" Header="Имя" Width="*"/>
                 <DataGridTextColumn Binding="{Binding Patronymic}" Header="Отчество" Width="2*"/>
-                <DataGridTextColumn Binding="{Binding Role.Name}" Header="Роль" Width="*"/>
+                <DataGridComboBoxColumn x:Name="FormFamilyMember__ComboBox" Header="Роль" SelectedItemBinding="{Binding Role.Name}" Width="*"/>
             </DataGrid.Columns>
         </DataGrid>
 

@@ -16,7 +16,8 @@ using System.Windows.Shapes;
 using Microsoft.EntityFrameworkCore;
 using HappyPocket.DataModel;
 using HappyPocket.Form;
-
+using System.Collections;
+using System.Reflection;
 
 namespace HappyPocket.Form
 {
@@ -33,6 +34,9 @@ namespace HappyPocket.Form
             /* It seems that it works fine without converting FamilyMembers Table to Local and without using ToBindingList(). Hope it won't be a big problem in the future, it's better to investigate how it works. */
             var familyMembers = dbContext.FamilyMembers.Include(x => x.Role).ToList(); 
             FormFamilyMember__DataGrid.ItemsSource = familyMembers; // Setting up a binding to cache.
+
+            var rolesNames = dbContext.Roles.Local.ToObservableCollection().Select(r => r.Name);
+            FormFamilyMember__ComboBox.ItemsSource = rolesNames;
         }
 
         private void Button_Update_Click(object sender, RoutedEventArgs e)
