@@ -8,15 +8,25 @@
         Title="MainWindow" Height="450" Width="800">
     <Window.Resources>
         <Style TargetType="Button">
-            <Setter Property="Margin" Value="20 8 20 8" />
-            <Setter Property="Width" Value="100" />
-            <Setter Property="Height" Value="30" />
+            <Setter Property="Margin" Value="20 0 20 0" />
+            <Setter Property="Width" Value="200" />
+            <Setter Property="Height" Value="40" />
+        </Style>
+        <Style TargetType="UniformGrid">
+            <Setter Property="Width" Value="500" />
+            <Setter Property="Height" Value="300" />
         </Style>
     </Window.Resources>
     <Grid>
-        <StackPanel HorizontalAlignment="Center" Grid.Row="1" Orientation="Horizontal">
+        <UniformGrid Rows="4" Columns="2">
             <Button x:Name="Button_Open_FormRole" Content="Роли" Click="Button_Open_FormRole_Click" />
             <Button x:Name="Button_Open_FormFamilyMember" Content="Члены семьи" Click="Button_Open_FormFamilyMember_Click" />
-        </StackPanel>
+            <!--<Button x:Name="Button_Open_FormCounteragent" Content="Контрагенты" Click="Button_Open_FormCounteragent_Click" />
+            <Button x:Name="Button_Open_FormExpense" Content="Расходы" Click="Button_Open_FormExpense_Click" />
+            <Button x:Name="Button_Open_FormExpenseCategory" Content="Категории расходов" Click="Button_Open_FormExpenseCategory_Click" />
+            <Button x:Name="Button_Open_FormIncome" Content="Доходы" Click="Button_Open_FormIncome_Click" />
+            <Button x:Name="Button_Open_FormIncomeCategory" Content="Категории доходов" Click="Button_Open_FormIncomeCategory_Click" />
+            <Button x:Name="Button_Open_FormPaymentType" Content="Тип оплаты" Click="Button_Open_FormPaymentType_Click" />-->
+        </UniformGrid>
     </Grid>
 </Window>

@@ -1,0 +1,67 @@
+﻿<local:FormWindow x:Class="HappyPocket.Form.FormAuthorization"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HappyPocket.Form"
+        mc:Ignorable="d"
+        Title="Авторизация" Height="250" Width="400">
+    <local:FormWindow.Resources>
+        <Style TargetType="TextBox">
+            <Setter Property="Margin" Value="0 5 0 5" />
+            <Setter Property="Width" Value="200" />
+            <Setter Property="Height" Value="30" />
+        </Style>
+        <Style x:Key="{x:Type PasswordBox}"
+        TargetType="{x:Type PasswordBox}">
+            <Setter Property="Margin" Value="0 5 0 5" />
+            <Setter Property="Width" Value="200" />
+            <Setter Property="Height" Value="30" />
+            <Setter Property="local:PasswordBoxMonitor.IsMonitoring"
+              Value="True"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type PasswordBox}">
+                        <Border Name="Bd"
+                    Background="{TemplateBinding Background}"
+                    BorderThickness="{TemplateBinding BorderThickness}"
+                    BorderBrush="{TemplateBinding BorderBrush}"
+                    SnapsToDevicePixels="true">
+                            <Grid>
+                                <ScrollViewer x:Name="PART_ContentHost"
+                              SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                                <TextBlock Text="Введите пароль" 
+                           Margin="4, 2, 0, 0"
+                           Foreground="Black" 
+                           Visibility="Collapsed"
+                           Name="txtPrompt" />
+                            </Grid>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsEnabled"
+                                         Value="false">
+                                <Setter TargetName="Bd"
+                                            Property="Background"
+                                            Value="{DynamicResource {x:Static SystemColors.ControlBrushKey}}"/>
+                                <Setter Property="Foreground"
+                                            Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>
+                            </Trigger>
+                            <Trigger Property="local:PasswordBoxMonitor.PasswordLength" Value="0">
+                                <Setter Property="Visibility" TargetName="txtPrompt" Value="Visible"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </local:FormWindow.Resources>
+
+    <Grid>
+        <StackPanel VerticalAlignment="Center" Grid.Row="1" Orientation="Vertical">
+            <TextBox x:Name="Username" GotFocus="RemoveText" LostFocus="AddText"/>
+            <PasswordBox x:Name="Password" GotFocus="RemoveText" LostFocus="AddText" />
+
+            <Button x:Name="Button_Login" Content="Вход" Click="Button_Login_Click" />
+        </StackPanel>
+    </Grid>
+</local:FormWindow>

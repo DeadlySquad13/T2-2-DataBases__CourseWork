@@ -11,14 +11,14 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <DataGrid AutoGenerateColumns="False" x:Name="FormRole__DataGrid" IsReadOnly="False"> <!-- TOFIX: Change back to True. --> 
+        <DataGrid AutoGenerateColumns="False" x:Name="FormRole__DataGrid" IsReadOnly="True"> <!-- TOFIX: Change back to True. --> 
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding Name}" Header="Имя" Width="*"/>
             </DataGrid.Columns>
         </DataGrid>
 
         <StackPanel HorizontalAlignment="Center" Grid.Row="1" Orientation="Horizontal">
-            <Button x:Name="Button_Save" Content="Сохранить" Click="Button_Save_Click" />
+            <!--<Button x:Name="Button_Save" Content="Сохранить" Click="Button_Save_Click" />-->
             <Button x:Name="Button_Back" Content="Назад" Click="Button_Back_Click" />
         </StackPanel>
     </Grid>

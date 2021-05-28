@@ -16,7 +16,6 @@
             optionsBuilder.UseSqlServer(@"Server = DS13; Database = HappyPocket; Trusted_Connection = True;");
         }
 
-
         // Tables.
         public DbSet<PaymentType> PaymentTypes { get; set; }
         public DbSet<Role> Roles { get; set; }

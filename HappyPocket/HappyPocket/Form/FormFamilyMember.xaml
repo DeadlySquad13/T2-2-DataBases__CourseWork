@@ -14,15 +14,25 @@
         
         <DataGrid AutoGenerateColumns="False" x:Name="FormFamilyMember__DataGrid">
             <DataGrid.Columns>
-                <DataGridTextColumn Binding="{Binding Name}" Header="Фамилия" Width="2*"/>
-                <DataGridTextColumn Binding="{Binding Surname}" Header="Имя" Width="*"/>
-                <DataGridTextColumn Binding="{Binding Patronymic}" Header="Отчество" Width="2*"/>
-                <DataGridComboBoxColumn x:Name="FormFamilyMember__ComboBox" Header="Роль" SelectedItemBinding="{Binding Role.Name}" Width="*"/>
+                <DataGridTextColumn Header="Фамилия"
+                    Binding="{Binding Name, ValidatesOnExceptions=True}"
+                    Width="2*"/>
+                <DataGridTextColumn Header="Имя"
+                    Binding="{Binding Surname, ValidatesOnExceptions=True}"
+                    Width="*"/>
+                <DataGridTextColumn Header="Отчество"
+                    Binding="{Binding Patronymic, ValidatesOnExceptions=True}"
+                    Width="2*"/>
+                <DataGridComboBoxColumn x:Name="FormFamilyMember__ComboBox"
+                    Header="Роль" 
+                    SelectedItemBinding="{Binding Role.Name}" 
+                    Width="*"/>
             </DataGrid.Columns>
         </DataGrid>
 
         <StackPanel HorizontalAlignment="Center" Grid.Row="1" Orientation="Horizontal">
             <Button x:Name="Button_Update" Content="Обновить" Click="Button_Update_Click" />
+            <Button x:Name="Button_Back" Content="Назад" Click="Button_Back_Click" />
         </StackPanel>
     </Grid>
 </local:FormWindow>
