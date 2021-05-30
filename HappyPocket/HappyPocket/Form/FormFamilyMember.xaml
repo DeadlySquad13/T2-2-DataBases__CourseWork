@@ -4,39 +4,74 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HappyPocket.Form"
-        xmlns:helper="clr-namespace:HappyPocket.Form.Helper"
         mc:Ignorable="d"
         Title="Члены семьи" Height="250" Width="500">
+    <local:FormWindow.Resources>
+        <ControlTemplate x:Key="validationErrorTemplate">
+            <DockPanel>
+                <TextBlock Foreground="Green" 
+                           DockPanel.Dock="Left">
+                    Wrong!
+                </TextBlock>
+                <AdornedElementPlaceholder x:Name="ErrorAdorner" />
+            </DockPanel>
+        </ControlTemplate>
+    </local:FormWindow.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        
-        <DataGrid AutoGenerateColumns="False" x:Name="FormFamilyMember__DataGrid">
+
+        <DataGrid x:Name="FormFamilyMember__DataGrid"
+                  AutoGenerateColumns="False"
+                  RowEditEnding="DataGrid_RowEditEnding">
+
+            <DataGrid.Resources>
+                <Style x:Key="errorStyle" TargetType="{x:Type TextBox}">
+                    <Setter Property="Padding" Value="-2"/>
+                    <Style.Triggers>
+                        <Trigger Property="Validation.HasError" Value="True">
+                            <Setter Property="Background" Value="Red" />
+                            <Setter Property="ToolTip" 
+                            Value="{Binding RelativeSource={RelativeSource Self},
+                            Path=(Validation.Errors)[0].ErrorContent}" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </DataGrid.Resources>
+
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Фамилия"
-                    Binding="{Binding Surname, ValidatesOnExceptions=True}"
-                    Width="2*"/>
+                                    Width="2*"
+                                    EditingElementStyle="{StaticResource errorStyle}">
+                    <DataGridTextColumn.Binding>
+                        <Binding Path="Surname" UpdateSourceTrigger="LostFocus">
+                            <Binding.ValidationRules>
+                                <local:NameValidator />
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </DataGridTextColumn.Binding>
+                </DataGridTextColumn>
+                
                 <DataGridTextColumn Header="Имя"
                     Binding="{Binding Name, ValidatesOnExceptions=True}"
-                    Width="*"/>
+                    Width="2*" />
+                
                 <DataGridTextColumn Header="Отчество"
                     Binding="{Binding Patronymic, ValidatesOnExceptions=True}"
-                    Width="2*"/>
+                    Width="2*" />
+                
                 <DataGridComboBoxColumn x:Name="FormFamilyMember__ComboBox"
                     Header="Роль"
                     SelectedValueBinding="{Binding RoleId}"
                     SelectedValuePath="Id"
                     DisplayMemberPath="Name"
-                    Width="*"/>
-                <!--<helper:DataGridComboBoxColumnWithBinding 
-                    Header="Роль"
-                    SelectedValueBinding="{Binding RoleId}"
-                    SelectedValuePath="Id"
-                    DisplayMemberPath="Name"
-                    ItemsSource="{Binding RelativeSource={RelativeSource Findancestor, AncestorType={x:Type local:FormWindow}}, Path=dbContext.Roles}"/>-->
+                    Width="*" />
             </DataGrid.Columns>
+            <!--<DataGrid.RowValidationRules>
+                <local:NameValidator></local:NameValidator>
+            </DataGrid.RowValidationRules>-->
         </DataGrid>
 
         <StackPanel HorizontalAlignment="Center" Grid.Row="1" Orientation="Horizontal">

@@ -23,6 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Form\Helper\" />
     <Folder Include="UtilityWindows\" />
   </ItemGroup>
 

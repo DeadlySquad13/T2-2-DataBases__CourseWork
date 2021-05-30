@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace HappyPocket.DataModel
 {
-    public class FamilyMember : INotifyPropertyChanged
+    public class FamilyMember
     {
         public int Id { get; set; }
 
@@ -38,7 +38,5 @@ namespace HappyPocket.DataModel
             Incomes = new ObservableCollection<Income>();
             Expenses = new ObservableCollection<Expense>();
         }
-
-        public event PropertyChangedEventHandler PropertyChanged;
     }
 }
