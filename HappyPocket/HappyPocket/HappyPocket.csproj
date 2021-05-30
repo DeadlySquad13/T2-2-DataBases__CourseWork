@@ -14,6 +14,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Form\FormPaymentType.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Form\Form_Roles - Copy.xaml.cs">
       <DependentUpon>Form_Role.xaml.cs</DependentUpon>
     </Compile>
@@ -26,6 +29,13 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.6" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.6" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Form\FormPaymentType.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
 
 </Project>

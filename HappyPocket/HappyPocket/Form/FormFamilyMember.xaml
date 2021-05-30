@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HappyPocket.Form"
+        xmlns:helper="clr-namespace:HappyPocket.Form.Helper"
         mc:Ignorable="d"
         Title="Члены семьи" Height="250" Width="500">
     <Grid>
@@ -15,18 +16,26 @@
         <DataGrid AutoGenerateColumns="False" x:Name="FormFamilyMember__DataGrid">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Фамилия"
-                    Binding="{Binding Name, ValidatesOnExceptions=True}"
+                    Binding="{Binding Surname, ValidatesOnExceptions=True}"
                     Width="2*"/>
                 <DataGridTextColumn Header="Имя"
-                    Binding="{Binding Surname, ValidatesOnExceptions=True}"
+                    Binding="{Binding Name, ValidatesOnExceptions=True}"
                     Width="*"/>
                 <DataGridTextColumn Header="Отчество"
                     Binding="{Binding Patronymic, ValidatesOnExceptions=True}"
                     Width="2*"/>
                 <DataGridComboBoxColumn x:Name="FormFamilyMember__ComboBox"
-                    Header="Роль" 
-                    SelectedItemBinding="{Binding Role.Name}" 
+                    Header="Роль"
+                    SelectedValueBinding="{Binding RoleId}"
+                    SelectedValuePath="Id"
+                    DisplayMemberPath="Name"
                     Width="*"/>
+                <!--<helper:DataGridComboBoxColumnWithBinding 
+                    Header="Роль"
+                    SelectedValueBinding="{Binding RoleId}"
+                    SelectedValuePath="Id"
+                    DisplayMemberPath="Name"
+                    ItemsSource="{Binding RelativeSource={RelativeSource Findancestor, AncestorType={x:Type local:FormWindow}}, Path=dbContext.Roles}"/>-->
             </DataGrid.Columns>
         </DataGrid>
 

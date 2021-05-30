@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel;
 
 namespace HappyPocket.DataModel
 {
-    public class FamilyMember
+    public class FamilyMember : INotifyPropertyChanged
     {
         public int Id { get; set; }
 
@@ -37,5 +38,7 @@ namespace HappyPocket.DataModel
             Incomes = new ObservableCollection<Income>();
             Expenses = new ObservableCollection<Expense>();
         }
+
+        public event PropertyChangedEventHandler PropertyChanged;
     }
 }

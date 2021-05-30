@@ -25,22 +25,32 @@ namespace HappyPocket
     {
         public MainWindow()
         {
-            //string connectionString = ConfigurationManager.ConnectionStrings["HappyPocketContext"].ConnectionString;
             InitializeComponent();
         }
 
         private void Button_Open_FormRole_Click(object sender, RoutedEventArgs e)
         {
             FormRole SubWindow = new FormRole();
-            SubWindow.Owner = this;
-            this.Hide();
-            SubWindow.Show();
+            Open_FormWindow(SubWindow);
         }
 
         private void Button_Open_FormFamilyMember_Click(object sender, RoutedEventArgs e)
         {
             FormFamilyMember SubWindow = new FormFamilyMember();
-            SubWindow.Show();
+            Open_FormWindow(SubWindow);
+        }
+
+        private void Button_Open_FormPaymentType_Click(object sender, RoutedEventArgs e)
+        {
+            FormPaymentType SubWindow = new FormPaymentType();
+            Open_FormWindow(SubWindow);
+        }
+
+        private void Open_FormWindow(FormWindow formWindow)
+        {
+            formWindow.Owner = this;
+            this.Hide();
+            formWindow.Show();
         }
     }
 }

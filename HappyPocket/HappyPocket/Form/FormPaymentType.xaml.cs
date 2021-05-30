@@ -24,21 +24,15 @@ namespace HappyPocket.Form
     /// <summary>
     /// Interaction logic for Form_FamilyMember.xaml
     /// </summary>
-    public partial class FormFamilyMember : FormWindow
+    public partial class FormPaymentType : FormWindow
     {
-        public FormFamilyMember() : base()
+        public FormPaymentType() : base()
         {
             InitializeComponent();
-
-            // Loading the tables.
-            dbContext.FamilyMembers.Load();
-            dbContext.Roles.Load();
-
-            var familyMembers = dbContext.FamilyMembers.Local.ToBindingList(); 
-            FormFamilyMember__DataGrid.ItemsSource = familyMembers; // Setting up a binding to cache.
-
-            var rolesNames = dbContext.Roles.Local.ToBindingList();
-            FormFamilyMember__ComboBox.ItemsSource = rolesNames;
+            
+            dbContext.PaymentTypes.Load();
+            var paymentTypes = dbContext.PaymentTypes.Local.ToBindingList(); 
+            FormPaymentType__DataGrid.ItemsSource = paymentTypes; // Setting up a binding to cache.
         }
 
         private void Button_Update_Click(object sender, RoutedEventArgs e)

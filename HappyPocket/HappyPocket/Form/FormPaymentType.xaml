@@ -1,0 +1,29 @@
+﻿<local:FormWindow x:Class="HappyPocket.Form.FormPaymentType"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HappyPocket.Form"
+        mc:Ignorable="d"
+        Title="Типы оплаты" Height="250" Width="500">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        
+        <DataGrid AutoGenerateColumns="False" x:Name="FormPaymentType__DataGrid">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Наименование типа оплаты"
+                    Binding="{Binding Name, ValidatesOnExceptions=True}"
+                    Width="*"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <StackPanel HorizontalAlignment="Center" Grid.Row="1" Orientation="Horizontal">
+            <Button x:Name="Button_Update" Content="Обновить" Click="Button_Update_Click" />
+            <Button x:Name="Button_Back" Content="Назад" Click="Button_Back_Click" />
+        </StackPanel>
+    </Grid>
+</local:FormWindow>
+

@@ -21,12 +21,12 @@
         <UniformGrid Rows="4" Columns="2">
             <Button x:Name="Button_Open_FormRole" Content="Роли" Click="Button_Open_FormRole_Click" />
             <Button x:Name="Button_Open_FormFamilyMember" Content="Члены семьи" Click="Button_Open_FormFamilyMember_Click" />
-            <!--<Button x:Name="Button_Open_FormCounteragent" Content="Контрагенты" Click="Button_Open_FormCounteragent_Click" />
-            <Button x:Name="Button_Open_FormExpense" Content="Расходы" Click="Button_Open_FormExpense_Click" />
-            <Button x:Name="Button_Open_FormExpenseCategory" Content="Категории расходов" Click="Button_Open_FormExpenseCategory_Click" />
-            <Button x:Name="Button_Open_FormIncome" Content="Доходы" Click="Button_Open_FormIncome_Click" />
-            <Button x:Name="Button_Open_FormIncomeCategory" Content="Категории доходов" Click="Button_Open_FormIncomeCategory_Click" />
-            <Button x:Name="Button_Open_FormPaymentType" Content="Тип оплаты" Click="Button_Open_FormPaymentType_Click" />-->
+            <!--<Button x:Name="Button_Open_FormCounteragent" Content="Контрагенты" Click="Button_Open_FormCounteragent_Click" />-->
+            <!--<Button x:Name="Button_Open_FormExpense" Content="Расходы" Click="Button_Open_FormExpense_Click" />-->
+            <!--<Button x:Name="Button_Open_FormExpenseCategory" Content="Категории расходов" Click="Button_Open_FormExpenseCategory_Click" />-->
+            <!--<Button x:Name="Button_Open_FormIncome" Content="Доходы" Click="Button_Open_FormIncome_Click" />-->
+            <!--<Button x:Name="Button_Open_FormIncomeCategory" Content="Категории доходов" Click="Button_Open_FormIncomeCategory_Click" />-->
+            <Button x:Name="Button_Open_FormPaymentType" Content="Тип оплаты" Click="Button_Open_FormPaymentType_Click" />
         </UniformGrid>
     </Grid>
 </Window>
