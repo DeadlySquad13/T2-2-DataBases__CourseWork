@@ -1,23 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 using Microsoft.EntityFrameworkCore;
+
 using HappyPocket.DataModel;
-using HappyPocket.Form;
-using System.Collections;
-using System.Reflection;
+using System.ComponentModel.DataAnnotations;
+using ValidationResult = System.Windows.Controls.ValidationResult;
+using HappyPocket.Form.Validation;
 
 namespace HappyPocket.Form
 {
@@ -49,6 +40,7 @@ namespace HappyPocket.Form
             //catch (DbUpdateException e1){
 
             //}
+
             dbContext.SaveChanges();
         }
 
@@ -57,24 +49,15 @@ namespace HappyPocket.Form
             this.Close();
         }
 
-        //private void DataGrid_RowEditEnding(object sender, DataGridRowEditEndingEventArgs e)
-        //{
-        //    DataGrid dataGridSender = (DataGrid)sender;
+        private void DataGrid__Button_Delete_Click(object sender, RoutedEventArgs e)
+        {
+            Form.DeleteRowFromDataGrid<FamilyMember>(sender, e, FormFamilyMember__DataGrid);
+        }
 
-        //    if (dataGridSender.SelectedItem == null)
-        //    {
-        //        //e.Cancel = true;
-        //        (sender as DataGrid).RowEditEnding -= DataGrid_RowEditEnding;
-        //        (sender as DataGrid).CommitEdit();
-        //        (sender as DataGrid).Items.Refresh();
-        //        (sender as DataGrid).RowEditEnding += DataGrid_RowEditEnding;
-        //    }
-        //    else
-        //    {
-        //        return;
-        //    }
-
-        //}
+        private void Button_Add_Click(object sender, RoutedEventArgs e)
+        {
+            Form.AddNewRowToDataGrid<FamilyMember>(sender, e, FormFamilyMember__DataGrid);
+        }
     }
 
     public class NameValidator : ValidationRule
@@ -94,5 +77,20 @@ namespace HappyPocket.Form
             }
             return ValidationResult.ValidResult;
         }
+
+        //    public void ValidateAnnotations(object value)
+        //    {
+        //        ValidationContext validationContext = new ValidationContext(value);
+        //        var validationResults = new List<System.ComponentModel.DataAnnotations.ValidationResult>();
+        //        bool valid = Validator.TryValidateObject(value, validationContext, validationResults, true);
+        //        if (!valid)
+        //        {
+        //            foreach (var validationResult in validationResults)
+        //            {
+        //                Console.WriteLine("{0}", validationResult.ErrorMessage);
+        //            }
+        //        }
+
+        //    }
+        }
     }
-}

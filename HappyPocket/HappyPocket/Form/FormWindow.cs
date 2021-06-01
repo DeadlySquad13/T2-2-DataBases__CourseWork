@@ -6,7 +6,7 @@ using System.Windows;
 using HappyPocket.DataModel;
 
 namespace HappyPocket.Form
-{   
+{
     public class FormWindow : Window
     {
         public HappyPocketContext dbContext;
