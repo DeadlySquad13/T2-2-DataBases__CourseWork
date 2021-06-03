@@ -6,24 +6,86 @@
         xmlns:local="clr-namespace:HappyPocket.Form"
         mc:Ignorable="d"
         Title="Типы оплаты" Height="250" Width="500">
+    <local:FormWindow.Resources>
+        
+
+    </local:FormWindow.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        
-        <DataGrid AutoGenerateColumns="False" x:Name="FormPaymentType__DataGrid">
+
+        <DataGrid x:Name="FormPaymentType__DataGrid"
+                  CanUserAddRows="False"
+                  AutoGenerateColumns="False">
+
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Наименование типа оплаты"
-                    Binding="{Binding Name, ValidatesOnExceptions=True}"
-                    Width="*"/>
+                <DataGridTextColumn Header="Наименование"
+                                    Width="*" 
+                                    ElementStyle="{StaticResource errorStyle}"
+                                    EditingElementStyle="{StaticResource errorStyleEditing}">
+                    <DataGridTextColumn.Binding>
+                        <Binding Path="Name" 
+                                 UpdateSourceTrigger="LostFocus" 
+                                 ValidatesOnDataErrors="True"
+                                 NotifyOnValidationError="True">
+                            <Binding.ValidationRules>
+                                <DataErrorValidationRule />
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </DataGridTextColumn.Binding>
+                </DataGridTextColumn>
+
+                <DataGridTemplateColumn Header="Удалить">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button x:Name="DataGrid__Button_Delete"
+                                    Style="{StaticResource TabButtonRounded}"
+                                    Width="52"
+                                    Height="52"
+                                    Click="DataGrid__Button_Delete_Click">
+                                <Canvas x:Name="RedCross" Width="26" Height="26">
+                                    <Path StrokeThickness="6">
+                                        <Path.Stroke>
+                                            <RadialGradientBrush Center="0.5,0.5" RadiusX="1" RadiusY="1">
+                                                <GradientStop Color="#FF973E3E"/>
+                                                <GradientStop Color="#FFEE3B3B" Offset="0.9"/>
+                                            </RadialGradientBrush>
+                                        </Path.Stroke>
+                                        <Path.Data>
+                                            <PathGeometry>
+                                                <PathGeometry.Figures>
+                                                    <PathFigure StartPoint="0,0">
+                                                        <LineSegment Point="26,26"/>
+                                                    </PathFigure>
+                                                    <PathFigure StartPoint="0,26">
+                                                        <LineSegment Point="26,0"/>
+                                                    </PathFigure>
+                                                </PathGeometry.Figures>
+                                            </PathGeometry>
+                                        </Path.Data>
+                                    </Path>
+                                </Canvas>
+                            </Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
 
         <StackPanel HorizontalAlignment="Center" Grid.Row="1" Orientation="Horizontal">
-            <Button x:Name="Button_Update" Content="Обновить" Click="Button_Update_Click" />
-            <Button x:Name="Button_Back" Content="Назад" Click="Button_Back_Click" />
+            <Button x:Name="Button_Add"
+                    Content="Добавить запись"
+                    Click="Button_Add_Click" />
+            <Button x:Name="Button_Update"
+                    Content="Обновить"
+                    Click="Button_Update_Click" />
+            <Button x:Name="Button_Back"
+                    Content="Назад"
+                    Click="Button_Back_Click" />
         </StackPanel>
     </Grid>
 </local:FormWindow>
+
 

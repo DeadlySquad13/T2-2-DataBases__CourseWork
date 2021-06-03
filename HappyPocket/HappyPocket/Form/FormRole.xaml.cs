@@ -35,12 +35,12 @@ namespace HappyPocket.Form
             FormRole__DataGrid.ItemsSource = dbContext.Roles.Local.ToBindingList(); // Setting up a binding to cache.
         }
 
-        private void Button_Save_Click(object sender, RoutedEventArgs e)
+        protected override void Button_Update_Click(object sender, RoutedEventArgs e)
         {
-            dbContext.SaveChanges();
+            this.Update();
         }
 
-        private void Button_Back_Click(object sender, RoutedEventArgs e)
+        protected override void Button_Back_Click(object sender, RoutedEventArgs e)
         {
            this.Close();
         }

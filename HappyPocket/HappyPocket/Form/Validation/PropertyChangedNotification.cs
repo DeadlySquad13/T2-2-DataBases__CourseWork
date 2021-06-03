@@ -11,29 +11,13 @@ using ValidationResult = System.Windows.Controls.ValidationResult;
 
 namespace HappyPocket.Form.Validation
 {
-    public abstract class PropertyChangedNotification : ValidationRule, INotifyPropertyChanged, IDataErrorInfo
+    public abstract class PropertyChangedNotification : INotifyPropertyChanged, IDataErrorInfo
     {
         #region Fields
 
         private readonly Dictionary<string, object> _values = new Dictionary<string, object>();
 
         #endregion
-
-        public override ValidationResult Validate
-          (object value, System.Globalization.CultureInfo cultureInfo)
-        {
-            if (String.IsNullOrEmpty(value.ToString()))
-            {
-                return new ValidationResult(false, "Value cannot be empty.");
-            }
-            else
-            {
-                if (value.ToString().Length > 3)
-                    return new ValidationResult
-                    (false, "Name cannot be more than 3 characters long.");
-            }
-            return ValidationResult.ValidResult;
-        }
 
         #region Protected
 

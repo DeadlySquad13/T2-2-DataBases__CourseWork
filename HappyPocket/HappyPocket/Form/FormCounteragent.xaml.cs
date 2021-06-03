@@ -19,20 +19,21 @@ using HappyPocket.Form;
 using System.Collections;
 using System.Reflection;
 
+
 namespace HappyPocket.Form
 {
     /// <summary>
-    /// Interaction logic for FormPaymentType.xaml
+    /// Interaction logic for FormCounteragent.xaml
     /// </summary>
-    public partial class FormPaymentType : FormWindow
+    public partial class FormCounteragent : FormWindow
     {
-        public FormPaymentType() : base()
+        public FormCounteragent() : base()
         {
             InitializeComponent();
 
-            dbContext.PaymentTypes.Load();
-            var paymentTypes = dbContext.PaymentTypes.Local.ToBindingList();
-            FormPaymentType__DataGrid.ItemsSource = paymentTypes; // Setting up a binding to cache.
+            dbContext.Counteragents.Load();
+            var counteragents = dbContext.Counteragents.Local.ToBindingList();
+            FormCounteragent__DataGrid.ItemsSource = counteragents; // Setting up a binding to cache.
         }
 
         protected override void Button_Update_Click(object sender, RoutedEventArgs e)
@@ -47,12 +48,12 @@ namespace HappyPocket.Form
 
         protected override void DataGrid__Button_Delete_Click(object sender, RoutedEventArgs e)
         {
-            Form.DeleteRowFromDataGrid<PaymentType>(sender, e, FormPaymentType__DataGrid);
+            Form.DeleteRowFromDataGrid<Counteragent>(sender, e, FormCounteragent__DataGrid);
         }
 
         protected override void Button_Add_Click(object sender, RoutedEventArgs e)
         {
-            Form.AddNewRowToDataGrid<PaymentType>(sender, e, FormPaymentType__DataGrid);
+            Form.AddNewRowToDataGrid<Counteragent>(sender, e, FormCounteragent__DataGrid);
         }
     }
 }

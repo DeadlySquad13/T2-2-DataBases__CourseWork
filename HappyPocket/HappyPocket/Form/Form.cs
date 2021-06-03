@@ -1,13 +1,9 @@
 ﻿using HappyPocket.DataModel;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
+using System.Windows.Media;
 
 namespace HappyPocket.Form
 {
@@ -31,6 +27,28 @@ namespace HappyPocket.Form
                 }
                 ((BindingList<TEntity>)dataGrid.ItemsSource).Remove(castedRow);
             }
+        }
+
+        public static bool IsValid(DependencyObject parent)
+        {
+            if (System.Windows.Controls.Validation.GetHasError(parent))
+                return false;
+
+            // Validate all the bindings on the children
+            for (int i = 0; i != VisualTreeHelper.GetChildrenCount(parent); ++i)
+            {
+                DependencyObject child = VisualTreeHelper.GetChild(parent, i);
+                if (!IsValid(child)) { return false; }
+            }
+
+            return true;
+        }
+
+        public static void RefreshDataGrid(DataGrid dataGrid)
+        {
+            var BackedUpItems = dataGrid.ItemsSource;
+            dataGrid.ItemsSource = null;
+            dataGrid.ItemsSource = BackedUpItems;
         }
     }
 }

@@ -52,5 +52,35 @@ namespace HappyPocket
             this.Hide();
             formWindow.Show();
         }
+
+        private void Button_Open_FormCounteragent_Click(object sender, RoutedEventArgs e)
+        {
+            FormCounteragent SubWindow = new FormCounteragent();
+            Open_FormWindow(SubWindow);
+        }
+
+        private void Button_Open_FormExpenseCategory_Click(object sender, RoutedEventArgs e)
+        {
+            FormExpenseCategory SubWindow = new FormExpenseCategory();
+            Open_FormWindow(SubWindow);
+        }
+
+        private void Button_Open_FormIncomeCategory_Click(object sender, RoutedEventArgs e)
+        {
+            FormIncomeCategory SubWindow = new FormIncomeCategory();
+            Open_FormWindow(SubWindow);
+        }
+
+        private void Button_Open_FormExpense_Click(object sender, RoutedEventArgs e)
+        {
+            FormExpense SubWindow = new FormExpense();
+            Open_FormWindow(SubWindow);
+        }
+
+        private void Button_Open_FormIncome_Click(object sender, RoutedEventArgs e)
+        {
+            FormIncome SubWindow = new FormIncome();
+            Open_FormWindow(SubWindow);
+        }
     }
 }

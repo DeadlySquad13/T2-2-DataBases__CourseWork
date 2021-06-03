@@ -1,20 +1,37 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel.DataAnnotations;
+using HappyPocket.Form.Validation;
 
 namespace HappyPocket.DataModel
 {
-    public class ExpenseCategory
+    public class ExpenseCategory : PropertyChangedNotification
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
+        public int Id
+        {
+            get => GetValue(() => Id);
+            set => SetValue(() => Id, value);
+        }
+        [MaxLength(40)]
+        [Required(ErrorMessage = "Поле обязательно.")]
+        public string Name
+        {
+            get => GetValue(() => Name);
+            set => SetValue(() => Name, value);
+        }
+
+        [Range(0, int.MaxValue, ErrorMessage = "Допустимы только неотрицательные числа.")]
+        public int Limit
+        {
+            get => GetValue(() => Limit);
+            set => SetValue(() => Limit, value);
+        }
         // Custom collection that stores instances of Expense assigned to this ExpenseCategory.
-        public ICollection<Expense> Expenses { get; set; }
+        public virtual ICollection<Expense> Expenses { get; set; }
         public ExpenseCategory()
         {
-            Expenses = new List<Expense>();
+            Name = "Категория расходов";
+            Expenses = new ObservableCollection<Expense>();
         }
     }
 }

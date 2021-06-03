@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Windows;
-
+﻿using System.Windows;
+using System.Windows.Controls;
 using HappyPocket.DataModel;
 
 namespace HappyPocket.Form
@@ -11,6 +8,8 @@ namespace HappyPocket.Form
     {
         public HappyPocketContext dbContext;
 
+        protected DataGrid dataGrid { get; set; }
+
         public FormWindow()
         {
             dbContext = new HappyPocketContext();
@@ -18,30 +17,56 @@ namespace HappyPocket.Form
             this.Closing += Form_Closing;
         }
 
+        protected virtual void Button_Back_Click(object sender, RoutedEventArgs e)
+        {
+        }
+
         protected void Form_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            if (!dbContext.ChangeTracker.HasChanges())
+            if (!Form.IsValid(this))
             {
-                if (this.Owner == null)
+                string messageBoxTextReturn = "В полях введена недопустимая информация. Если вы закроете форму, все изменения утратятся. \nВернуться к редактированию, чтобы устранить ошибки?";
+                string captionReturn = "Вернуться";
+
+                MessageBoxResult toReturn = System.Windows.MessageBox.Show(
+                    messageBoxTextReturn,
+                    captionReturn,
+                    MessageBoxButton.OKCancel,
+                    MessageBoxImage.Question);
+
+
+                if (toReturn == MessageBoxResult.OK) // User agreed to fix errors.
                 {
-                    return;    
+                    e.Cancel = true; // Cancel closing.
+                    return;
                 }
-                this.Owner.Show();
+                else
+                {
+                    dbContext.Dispose();
+                }
+
+                ReturnToOwnerWindow();
                 return;
             }
 
-            var messageBoxText = "Если вы закроете форму, все изменения утратятся. Сохранить изменения?";
-            var caption = "Закрыть форму";
+            if (!dbContext.ChangeTracker.HasChanges())
+            {
+                ReturnToOwnerWindow();
+                return;
+            }
+
+            string messageBoxTextSave = "Если вы закроете форму, все изменения утратятся. \nСохранить изменения?";
+            string captionClose = "Закрыть форму";
 
             MessageBoxResult toSave = System.Windows.MessageBox.Show(
-                messageBoxText,
-                caption,
+                messageBoxTextSave,
+                captionClose,
                 MessageBoxButton.YesNoCancel,
                 MessageBoxImage.Question);
 
             if (toSave == MessageBoxResult.Cancel)
             {
-                e.Cancel = true; // Cancelling closing.
+                e.Cancel = true; // Cancel closing.
                 return;
             }
             else if (toSave == MessageBoxResult.No)
@@ -53,12 +78,45 @@ namespace HappyPocket.Form
                 dbContext.SaveChanges();
             }
 
+            ReturnToOwnerWindow();
+        }
+
+        protected void ReturnToOwnerWindow() // Can be in future moved to higher abstraction class like HappyPocketWindow.
+        {
             if (this.Owner == null)
             {
                 return;
             }
             this.Owner.Show();
-            return;
+        }
+        protected void Update()
+        {
+            if (!Form.IsValid(this))
+            {
+                string messageBoxTextSaveError = "Сохранение невозможно: в полях введена недопустимая информация. \nВернуться к редактированию, чтобы устранить ошибки.";
+                string captionSaveError = "Ошибка при сохранении";
+
+                System.Windows.MessageBox.Show(
+                    messageBoxTextSaveError,
+                    captionSaveError,
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Exclamation);
+
+                return;
+            }
+
+            dbContext.SaveChanges();
+        }
+
+        protected virtual void Button_Update_Click(object sender, RoutedEventArgs e)
+        {
+        }
+
+        protected virtual void DataGrid__Button_Delete_Click(object sender, RoutedEventArgs e)
+        {
+        }
+        protected virtual void Button_Add_Click(object sender, RoutedEventArgs e)
+        {
         }
     }
 }
