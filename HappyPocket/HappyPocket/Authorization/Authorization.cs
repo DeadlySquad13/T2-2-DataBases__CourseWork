@@ -29,6 +29,7 @@ namespace HappyPocket.Authorization
 
     static class GlobalData
     {
+        static public User currentUser { get; set; }
         // Dictionary stores key-value paired data: 
         // { username, User(username, password, roles[]) }
         static public Dictionary<string, User> usersCredentials = new Dictionary<string, User>()

@@ -11,7 +11,7 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <DataGrid AutoGenerateColumns="False" x:Name="FormRole__DataGrid" IsReadOnly="False"> <!-- TOFIX: Change back to True. --> 
+        <DataGrid AutoGenerateColumns="False" x:Name="FormRole__DataGrid" CanUserAddRows="false"> <!-- TOFIX: Change back to True. --> 
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding Name}" Header="Имя" Width="*"/>
             </DataGrid.Columns>

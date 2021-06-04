@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using HappyPocket.DataModel;
 using System.Linq;
+using HappyPocket.Authorization;
 
 namespace HappyPocket.Form
 {
@@ -20,13 +21,13 @@ namespace HappyPocket.Form
             dbContext.Roles.Load();
             dbContext.FamilyMembers.Load();
             dbContext.Counteragents.Load();
-            dbContext.ExpenseCategories.Load();
+            dbContext.IncomeCategories.Load();
             dbContext.PaymentTypes.Load();
             dbContext.Expenses.Load();
 
 
-            var expenses = dbContext.Expenses.Local.ToBindingList();
-            FormIncome__DataGrid.ItemsSource = expenses; // Setting up a binding to cache.
+            var incomes = dbContext.Incomes.Local.ToBindingList();
+            FormIncome__DataGrid.ItemsSource = incomes; // Setting up a binding to cache.
             this.dataGrid = FormIncome__DataGrid;
 
 
@@ -41,6 +42,14 @@ namespace HappyPocket.Form
 
             var paymentTypes = dbContext.PaymentTypes.Local.ToBindingList();
             FormIncome__ComboBox_PaymentType.ItemsSource = paymentTypes;
+
+            if (GlobalData.currentUser.roles[0] == Authorization.Role.FinancialConsultant)
+            {
+                FormIncome__DataGrid.IsReadOnly = true;
+                UIElement[] elementsToHide = { Button_Add, Button_Update };
+                this.HideElements(elementsToHide);
+                DataGrid__Column_Delete.Visibility = Visibility.Collapsed;
+            }
         }
 
         protected override void Button_Update_Click(object sender, RoutedEventArgs e)
@@ -55,12 +64,12 @@ namespace HappyPocket.Form
 
         protected override void DataGrid__Button_Delete_Click(object sender, RoutedEventArgs e)
         {
-            Form.DeleteRowFromDataGrid<Expense>(sender, e, this.dataGrid);
+            Form.DeleteRowFromDataGrid<Income>(sender, e, this.dataGrid);
         }
 
         protected override void Button_Add_Click(object sender, RoutedEventArgs e)
         {
-            Form.AddNewRowToDataGrid<Expense>(sender, e, this.dataGrid);
+            Form.AddNewRowToDataGrid<Income>(sender, e, this.dataGrid);
         }
     }
 }

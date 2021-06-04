@@ -36,7 +36,8 @@
                     </DataGridTextColumn.Binding>
                 </DataGridTextColumn>
 
-                <DataGridTemplateColumn Header="Удалить">
+                <DataGridTemplateColumn x:Name="DataGrid__Column_Delete"
+                                        Header="Удалить">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Button x:Name="DataGrid__Button_Delete"

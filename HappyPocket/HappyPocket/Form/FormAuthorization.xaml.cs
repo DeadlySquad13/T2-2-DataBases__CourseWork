@@ -16,6 +16,7 @@ namespace HappyPocket.Form
             InitializeComponent();
             Username.Text = "Введите имя";
             //Password.Text = "Введите пароль";
+
         }
 
         public void RemoveText(object sender, RoutedEventArgs e)
@@ -54,6 +55,7 @@ namespace HappyPocket.Form
             {
                 if (GlobalData.usersCredentials[Username.Text].password == Password.Password)
                 {
+                    GlobalData.currentUser = GlobalData.usersCredentials[Username.Text];
                     MainWindow MainWindow = new MainWindow();
                     this.Close();
                     MainWindow.Show();

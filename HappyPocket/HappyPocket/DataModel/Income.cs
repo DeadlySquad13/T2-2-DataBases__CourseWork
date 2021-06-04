@@ -50,7 +50,7 @@ namespace HappyPocket.DataModel
         }
         public virtual Counteragent Counteragent { get; set; }
 
-        // Connection 1-M with ExpenseCategories.
+        // Connection 1-M with IncomeCategories.
         [Required]
         public int IncomeCategoryId
         {

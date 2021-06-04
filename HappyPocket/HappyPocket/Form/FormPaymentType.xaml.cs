@@ -18,6 +18,7 @@ using HappyPocket.DataModel;
 using HappyPocket.Form;
 using System.Collections;
 using System.Reflection;
+using HappyPocket.Authorization;
 
 namespace HappyPocket.Form
 {
@@ -33,6 +34,14 @@ namespace HappyPocket.Form
             dbContext.PaymentTypes.Load();
             var paymentTypes = dbContext.PaymentTypes.Local.ToBindingList();
             FormPaymentType__DataGrid.ItemsSource = paymentTypes; // Setting up a binding to cache.
+
+            if (GlobalData.currentUser.roles[0] == Authorization.Role.FinancialConsultant)
+            {
+                FormPaymentType__DataGrid.IsReadOnly = true;
+                UIElement[] elementsToHide = { Button_Add, Button_Update };
+                this.HideElements(elementsToHide);
+                DataGrid__Column_Delete.Visibility = Visibility.Collapsed;
+            }
         }
 
         protected override void Button_Update_Click(object sender, RoutedEventArgs e)

@@ -1,6 +1,7 @@
 ﻿using System.Windows;
 using Microsoft.EntityFrameworkCore;
 using HappyPocket.DataModel;
+using HappyPocket.Authorization;
 
 namespace HappyPocket.Form
 {
@@ -17,6 +18,14 @@ namespace HappyPocket.Form
 
             FormIncomeCategory__DataGrid.ItemsSource = dbContext.IncomeCategories.Local.ToBindingList(); // Setting up a binding to cache.
             this.dataGrid = FormIncomeCategory__DataGrid;
+
+            if (GlobalData.currentUser.roles[0] == Authorization.Role.FinancialConsultant)
+            {
+                FormIncomeCategory__DataGrid.IsReadOnly = true;
+                UIElement[] elementsToHide = { Button_Add, Button_Update };
+                this.HideElements(elementsToHide);
+                DataGrid__Column_Delete.Visibility = Visibility.Collapsed;
+            }
         }
 
         protected override void Button_Update_Click(object sender, RoutedEventArgs e)

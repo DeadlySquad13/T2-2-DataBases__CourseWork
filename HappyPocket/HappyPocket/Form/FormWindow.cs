@@ -108,6 +108,14 @@ namespace HappyPocket.Form
             dbContext.SaveChanges();
         }
 
+        protected void HideElements(UIElement[] elementsToHide)
+        {
+            foreach (UIElement element in elementsToHide)
+            {
+                element.Visibility = Visibility.Collapsed;
+            }
+        }
+
         protected virtual void Button_Update_Click(object sender, RoutedEventArgs e)
         {
         }
