@@ -8,13 +8,14 @@
     {
         public HappyPocketContext()
         {
-            Database.EnsureDeleted();
+            //Database.EnsureDeleted();
             Database.EnsureCreated();
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Server = DS13; Database = HappyPocket; Trusted_Connection = True;");
+            //optionsBuilder.UseSqlServer(@"Server = DS13; Database = HappyPocket; Trusted_Connection = True;");
+            optionsBuilder.UseSqlServer(@"Server=(localdb)\MSSQLLocalDB;Database=HappyPocket;Trusted_Connection=True;");
         }
 
         // Tables.

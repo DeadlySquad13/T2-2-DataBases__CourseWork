@@ -61,7 +61,8 @@
             <TextBox x:Name="Username" GotFocus="RemoveText" LostFocus="AddText"/>
             <PasswordBox x:Name="Password" GotFocus="RemoveText" LostFocus="AddText" />
 
-            <Button x:Name="Button_Login" Content="Вход" Click="Button_Login_Click" />
+            <Button x:Name="Button_Login" Content="Войти" Click="Button_Login_Click" />
+            <Button x:Name="Button_Exit" Content="Выйти" Click="Button_Exit_Click" />
         </StackPanel>
     </Grid>
 </local:FormWindow>

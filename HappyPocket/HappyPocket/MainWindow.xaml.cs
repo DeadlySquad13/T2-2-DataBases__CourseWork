@@ -28,6 +28,7 @@ namespace HappyPocket
             InitializeComponent();
         }
 
+        #region Button_Open_Form..._Click
         private void Button_Open_FormRole_Click(object sender, RoutedEventArgs e)
         {
             FormRole SubWindow = new FormRole();
@@ -44,13 +45,6 @@ namespace HappyPocket
         {
             FormPaymentType SubWindow = new FormPaymentType();
             Open_FormWindow(SubWindow);
-        }
-
-        private void Open_FormWindow(FormWindow formWindow)
-        {
-            formWindow.Owner = this;
-            this.Hide();
-            formWindow.Show();
         }
 
         private void Button_Open_FormCounteragent_Click(object sender, RoutedEventArgs e)
@@ -81,6 +75,26 @@ namespace HappyPocket
         {
             FormIncome SubWindow = new FormIncome();
             Open_FormWindow(SubWindow);
+        }
+
+        private void Open_FormWindow(FormWindow formWindow)
+        {
+            formWindow.Owner = this;
+            this.Hide();
+            formWindow.Show();
+        }
+
+        #endregion
+        private void Button_ChangeUser_Click(object sender, RoutedEventArgs e)
+        {
+            FormAuthorization NewWindow = new FormAuthorization();
+            this.Close();
+            NewWindow.Show();
+        }
+
+        protected void Button_Exit_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

@@ -56,7 +56,7 @@ namespace HappyPocket.Form
             }
 
             string messageBoxTextSave = "Если вы закроете форму, все изменения утратятся. \nСохранить изменения?";
-            string captionClose = "Закрыть форму";
+            string captionClose = "Сохранить форму";
 
             MessageBoxResult toSave = System.Windows.MessageBox.Show(
                 messageBoxTextSave,
@@ -117,6 +117,12 @@ namespace HappyPocket.Form
         }
         protected virtual void Button_Add_Click(object sender, RoutedEventArgs e)
         {
+        }
+
+
+        protected virtual void Button_Exit_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HappyPocket"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Главное меню" Height="500" Width="800">
     <Window.Resources>
         <Style TargetType="Button">
             <Setter Property="Margin" Value="20 0 20 0" />
@@ -31,5 +31,13 @@
             <Button x:Name="Button_Open_FormRole" Content="Роли" Click="Button_Open_FormRole_Click" />
             <Button x:Name="Button_Open_FormPaymentType" Content="Типы оплаты" Click="Button_Open_FormPaymentType_Click" />
         </UniformGrid>
+        <StackPanel Orientation="Horizontal"
+                    Grid.Row="1"
+                    VerticalAlignment="Bottom" 
+                    HorizontalAlignment="Center"
+                    Margin="0 20">
+            <Button Width="140" x:Name="Button_Back" Content="Сменить пользователя" Click="Button_ChangeUser_Click" />
+            <Button Width="140" x:Name="Button_Exit" Content="Выйти" Click="Button_Exit_Click" />
+        </StackPanel>
     </Grid>
 </Window>

@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using HappyPocket.Form.Validation;
 
 namespace HappyPocket.DataModel
@@ -67,7 +68,7 @@ namespace HappyPocket.DataModel
             set => SetValue(() => PaymentTypeId, value);
         }
         public virtual PaymentType PaymentType { get; set; }
-        //// Custom collection that stores instances of PaymentType assigned to this Expense.
+        // Custom collection that stores instances of PaymentType assigned to this Expense.
         //public virtual ICollection<PaymentType> PaymentTypes { get; set; }
         public Expense()
         {
